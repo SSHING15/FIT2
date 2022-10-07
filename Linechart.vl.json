@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Global Daily Caloric Supply per Capita (1962-2018)",
+  "width": 700,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/SSHING15/FIT3179-MINE/main/CAlory_supply.csv"
+  },
+
+  
+  
+      "selection":{
+        "country_highlight":{
+          "type":"multi",
+          "fields":["Country"],
+          "bind":"legend" 
+        }
+      },
+      "mark": {"type": "line", "point": {"filled": false, "fill": "white"}},
+      "encoding": {
+        "x": {"timeUnit": "year", "field": "Year", "title": "Year"},
+        "y": {
+          "aggregate": "mean",
+          "field": "Cal",
+          "title": "Daily Caloric Supply (kcal)",
+          "type": "quantitative",
+          "scale": {"zero": false}
+        },
+        "color": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {"scheme": "tableau20"}
+        },
+        "opacity":{
+          "condition":{"selection":"country_highlight","value":1  },
+          "value":0.2},
+        "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {
+            "field": "Cal",
+            "type": "quantitative",
+            "title": "Daily Caloric Supply (kcal)"
+          }
+        ]
+      },
+    
+   
+  "config": {}
+}

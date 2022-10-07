@@ -1,0 +1,34 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 400,
+  "title": "World's Largest Food Exporters",
+  "data": {
+    "url": "https://raw.githubusercontent.com/SSHING15/FIT3179-MINE/main/WITS-Partner.csv"
+  },
+  "encoding": {
+    "y": {"field": "Country", "type": "nominal", "sort": "-x", "title": null}
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "color": "dodgerblue"},
+      "encoding": {
+        "x": {
+          "aggregate": "mean",
+          "field": "Export_thou",
+          "scale": {"domain": [0, 95000000]},
+          "title": "Exports (thousand USD$)"
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {
+            "field": "Export_thou",
+            "type": "quantitative",
+            "title": "Exports Value (USD$ thousands)"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
